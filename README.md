@@ -1,3 +1,3 @@
-# Start your docs here.
+# Chat with Volt!
 
-# See Volt docs at https://github.com/voltrb/volt/blob/master/Readme.md
+A simple chat application made to get an understanding of the Volt framework and its real-time capabilities.
