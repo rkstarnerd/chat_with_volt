@@ -8,7 +8,8 @@
       <div class="col-md-4">
       {{ _users.each do |user| }}
       {{ if user._id != Volt.user._id }}
-        <div class="contact {{ if params._user_id == user._id }} active {{ end }}" e-click="select_conversation(user)">
+        <div class="contact {{ if params._user_id == user._id }} active {{ end }}"
+             e-click="select_conversation(user)">
         {{ user._name }}
         </div>
       {{ end }}
