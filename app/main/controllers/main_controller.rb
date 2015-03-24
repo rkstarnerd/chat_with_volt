@@ -12,17 +12,28 @@ class MainController < Volt::ModelController
 
   def select_conversation(user)
     params._user_id = user._id
+    unread_notifications_from(user).then do |results|
+      results.each do |notification|
+        _notifications.delete(notification)
+      end
+    end
+    page._new_message = ''
   end
 
   def send_message
     unless page._new_message.strip.empty?
       _messages << { sender_id: Volt.user._id, receiver_id: params._user_id, text: page._new_message }
+      _notifications << { sender_id: Volt.user._id, receiver_id: params._user_id }
       page._new_message = ''
     end
   end
 
   def current_conversation
     _messages.find({ "$or" => [{ sender_id: Volt.user._id, receiver_id: params._user_id }, { sender_id: params._user_id, receiver_id: Volt.user._id }] })
+  end
+
+  def unread_notifications_from(user)
+    _notifications.find({ sender_id: user._id, receiver_id: Volt.user._id })
   end
 
   private
