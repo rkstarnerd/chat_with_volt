@@ -12,6 +12,11 @@
             <div class="contact {{ if params._user_id == user._id }} active {{ end }}"
                  e-click="select_conversation(user)">
               {{ user._name }}
+              {{ if unread_notifications_from(user).count > 0 }}
+                <span class="badge">
+                  {{ unread_notifications_from(user).count }}
+                </span>
+              {{ end }}
             </div>
           {{ end }}
         {{ end }}
