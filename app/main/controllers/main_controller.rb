@@ -1,3 +1,5 @@
+model :store
+
 # By default Volt generates this controller for your Main component
 class MainController < Volt::ModelController
   def index
